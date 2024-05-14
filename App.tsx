@@ -13,10 +13,10 @@ const App = () => {
       />
       <View style={styles.middleContainer}>
         <View style={styles.followContainer}>
-          <Text style={styles.followCount}>1k</Text>
+          <Text style={styles.followCount1k}>1k</Text>
           <Text style={styles.followLabel}>Followers</Text>
-          <Text style={styles.followCount}>3452</Text>
-          <Text style={styles.followLabel}>Following</Text>
+          <Text style={styles.followCount}>345</Text>
+          <Text style={styles.followLabel2}>Following</Text>
         </View>
         <Text style={styles.title}>@Catherine12</Text>
         <Text style={styles.subtitle}>
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
     bottom: '-10%',
     height: '90%',
     width: '100%',
-    backgroundColor: 'lightblue', // Substitua pela cor desejada
-    padding: 20, // Adicione padding para o conteúdo interno
+    backgroundColor: '#E6EEFA', // Substitua pela cor desejada
+    padding: 10, // Adicione padding para o conteúdo interno
   },
   followContainer: {
     flexDirection: 'row',
@@ -112,18 +112,31 @@ const styles = StyleSheet.create({
   followCount: {
     fontSize: 24,
     fontWeight: 'bold',
-    bottom: -25,
+    left:225,
+  },
+  followCount1k: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    left: 60,
+
   },
   followLabel: {
     fontSize: 16,
     color: '#666',
-    bottom: -25,
+    bottom: -35,
+    left: 13 ,
+  },
+  followLabel2: {
+    fontSize: 16,
+    color: '#666',
+    bottom: -35,
+    left: 172 ,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    bottom: -15,
+    bottom: -20,
   },
   subtitle: {
     fontSize: 16,
@@ -139,7 +152,7 @@ const styles = StyleSheet.create({
   },
   followButton: {
     backgroundColor: '#00f',
-    borderRadius: 30,
+    borderRadius: 20, // Reduza o raio da borda para diminuir o arredondamento
     padding: 10,
     flex: 1,
     alignItems: 'center',
@@ -147,7 +160,7 @@ const styles = StyleSheet.create({
   },
   messageButton: {
     backgroundColor: '#fff',
-    borderRadius: 30,
+    borderRadius: 20, // Reduza o raio da borda para diminuir o arredondamento
     padding: 10,
     flex: 1,
     alignItems: 'center',
