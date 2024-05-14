@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const App = () => {
@@ -43,7 +43,26 @@ const App = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.bottomContainer} />
+      <View style={styles.bottomContainer}>
+        <Image
+          style={styles.smallImage}
+          source={{
+            uri: 'https://img.freepik.com/fotos-premium/melhor-foto-aleatoria_865967-171027.jpg',
+          }}
+        />
+        <Image
+          style={styles.smallImage2}
+          source={{
+            uri: 'https://www.papeiseparede.com.br/7634-thickbox_default/papel-de-parede-paisagem-montanhas-geladas.jpg.webp',
+          }}
+        />
+        <Image
+          style={styles.smallImage3}
+          source={{
+            uri: 'https://www.queroviajarmais.com/wp-content/uploads/2020/08/lago-louise.jpg',
+          }}
+        />
+      </View>
       <View style={styles.topContainer}>
         <TouchableOpacity style={styles.button}>
           <Icon name="arrow-back-outline" size={30} color="#000" />
@@ -112,25 +131,24 @@ const styles = StyleSheet.create({
   followCount: {
     fontSize: 24,
     fontWeight: 'bold',
-    left:225,
+    left: 225,
   },
   followCount1k: {
     fontSize: 24,
     fontWeight: 'bold',
     left: 60,
-
   },
   followLabel: {
     fontSize: 16,
     color: '#666',
     bottom: -35,
-    left: 13 ,
+    left: 13,
   },
   followLabel2: {
     fontSize: 16,
     color: '#666',
     bottom: -35,
-    left: 172 ,
+    left: 172,
   },
   title: {
     fontSize: 24,
@@ -192,6 +210,30 @@ const styles = StyleSheet.create({
     height: '60%',
     width: '100%',
     backgroundColor: 'white', // Substitua pela cor desejada
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10,
+  },
+  smallImage: {
+    width: 200,
+    borderTopLeftRadius: 60,
+    height: '80%',
+    top: -50,
+    left: 33,
+  },
+  smallImage2: {
+    borderTopRightRadius:60,
+    width: 210,
+    height: '35%',
+    top: -173,
+    left: 110,
+  },
+  smallImage3: {
+    width: 210,
+    height: '43%',
+    right: 35,
+    top: 52,
   },
 });
 
