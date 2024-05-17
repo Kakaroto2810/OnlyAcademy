@@ -1,8 +1,34 @@
-import React from 'react';
-import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Image, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
+import { Camera } from 'expo-camera';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const App = () => {
+  const [hasPermission, setHasPermission] = useState(null);
+  const [camera, setCamera] = useState(null);
+
+  // Função para solicitar permissão da câmera
+const getCameraPermission = async () => {
+  const { status } = await Camera.requestPermissionsAsync();
+  setHasPermission(status === 'granted');
+};
+
+
+
+  // Função para tirar uma foto
+  const takePicture = async () => {
+    if (camera) {
+      const { status } = await camera.requestPermissionsAsync();
+      if (status === 'granted') {
+        const photo = await camera.takePictureAsync();
+        console.log(photo);
+        // Aqui você pode fazer o que quiser com a foto, como exibi-la em uma ImageView ou enviá-la para um servidor
+      } else {
+        Alert.alert('Permissão da câmera negada');
+      }
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -67,9 +93,10 @@ const App = () => {
         <TouchableOpacity style={styles.button}>
           <Icon name="arrow-back-outline" size={30} color="#000" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Icon name="mail" size={30} color="#000" />
-        </TouchableOpacity>
+       <TouchableOpacity style={styles.button} onPress={getCameraPermission}>
+  <Icon name="camera" size={30} color="#000" />
+</TouchableOpacity>
+
       </View>
       <Image
         style={styles.profileImage}
@@ -77,6 +104,14 @@ const App = () => {
           uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIZzfthlaKemTEHg8k8nm0tw2xBK6bZdpIqxIXhs256YElYmK5lA9TF0VQq32UpHW93zQ&usqp=CAU',
         }}
       />
+      {/* Verifica se a permissão da câmera foi concedida */}
+     {hasPermission && (
+    <Camera
+      style={styles.cameraPreview}
+      type={Camera.Constants.Type.back}
+      ref={(ref) => setCamera(ref)}
+    />
+  )}
     </View>
   );
 };
@@ -107,6 +142,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 30,
     padding: 10,
+    bottom: -20,
   },
   profileImage: {
     height: 100,
@@ -131,7 +167,7 @@ const styles = StyleSheet.create({
   followCount: {
     fontSize: 24,
     fontWeight: 'bold',
-    left: 225,
+    left: 210,
   },
   followCount1k: {
     fontSize: 24,
@@ -148,13 +184,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
     bottom: -35,
-    left: 172,
+    left: 163,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    bottom: -20,
+    bottom: -30,
   },
   subtitle: {
     fontSize: 16,
@@ -203,11 +239,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   bottomContainer: {
-    position: 'absolute',
+    flex: 1,
     borderTopLeftRadius: 80,
     borderTopRightRadius: 80,
-    bottom: '-10%',
-    height: '60%',
+    bottom: '-110%',
+    height: '5%',
     width: '100%',
     backgroundColor: 'white', // Substitua pela cor desejada
     flexDirection: 'row',
@@ -216,25 +252,31 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   smallImage: {
-    width: 200,
+    width: 160,
     borderTopLeftRadius: 60,
-    height: '80%',
-    top: -50,
-    left: 33,
+    height: 400,
+    top: -210,
+    left: 30,
   },
   smallImage2: {
-    borderTopRightRadius:60,
-    width: 210,
-    height: '35%',
-    top: -173,
-    left: 110,
+    borderTopRightRadius: 60,
+    width: 180,
+    height: 190,
+    top: -315,
+    left: 98,
   },
   smallImage3: {
-    width: 210,
-    height: '43%',
-    right: 35,
-    top: 52,
+    width: 180,
+    height: 190,
+    right: 32,
+    top: -105,
+  },
+  cameraPreview: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
 });
 
 export default App;
+
